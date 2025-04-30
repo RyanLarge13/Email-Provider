@@ -8,4 +8,5 @@ EmailRouter.post(
   EmailRouter
 );
 
+EmailRouter.get("/test", () => console.log("hi"));
 export default EmailRouter;
