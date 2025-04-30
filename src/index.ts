@@ -12,6 +12,7 @@ const staticAssetsPath = path.join(__dirname, "static");
 const PORT = Number(process.env.PORT) || 8080;
 
 app.use(cors());
+app.use(express.json());
 
 app.use("/send-email", EmailRouter);
 app.use("/static", express.static(staticAssetsPath));

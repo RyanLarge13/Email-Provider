@@ -11,10 +11,11 @@ type Body = {
   to: string;
   message: string;
   number: string;
+  name: string;
 };
 
 const M_GetDefaultTemplate = (requestBody: Body): string => {
-  const { businessName, logoUrl, from, to, message, number }: Body =
+  const { businessName, logoUrl, from, to, message, number, name }: Body =
     requestBody;
   return `
         <!DOCTYPE html>
@@ -71,10 +72,10 @@ const M_GetDefaultTemplate = (requestBody: Body): string => {
                     <tr>
                     <td style="padding: 20px">
                         <p style="margin: 0 0 10px; font-size: 14px; color: #888"
-                        ><strong>From:</strong> New Client &lt;${from}&gt;</p
+                        ><strong>From:</strong> ${name} &lt;${from}&gt;</p
                         >
                         <p style="margin: 0 0 20px; font-size: 14px; color: #888"
-                        ><strong>To:</strong> ${to} &lt;jane@example.com&gt;</p
+                        ><strong>To:</strong> ${businessName} &lt;${to}&gt;</p
                         >
                         <hr
                         style="
@@ -118,7 +119,7 @@ export const sendEmail = async (req: Request, res: Response): Promise<void> => {
       TODO:
         IMPLEMENT:
           1. Validate all request body data before continuing
-    */
+  */
   const { from, to }: Body = req.body;
 
   const customTemplate = M_GetDefaultTemplate(req.body);

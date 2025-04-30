@@ -1,12 +1,8 @@
 import express from "express";
 
+import { sendEmail } from "../controllers/emailController";
+
 const EmailRouter = express.Router();
 
-EmailRouter.post(
-  "/clients",
-  // auth --- Add auth here
-  EmailRouter
-);
-
-EmailRouter.get("/test", () => console.log("hi"));
+EmailRouter.post("/clients", sendEmail);
 export default EmailRouter;
