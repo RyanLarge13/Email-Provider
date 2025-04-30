@@ -11,7 +11,23 @@ const app = express();
 const staticAssetsPath = path.join(__dirname, "static");
 const PORT = Number(process.env.PORT) || 8080;
 
-app.use(cors());
+const corsAcceptList = [process.env.DEV_CORS_ORIGIN || ""];
+
+app.use(
+  cors({
+    origin: (origin = "", callback) => {
+      console.log(origin);
+      if (corsAcceptList.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use("/send-email", EmailRouter);

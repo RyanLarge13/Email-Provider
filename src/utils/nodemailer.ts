@@ -41,10 +41,10 @@ export const NodeMailer_SendEmail = async (
   const transporterAuth = {
     type: "OAuth2",
     user: process.env.EMAIL,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.REFRESH_TOKEN,
-    accessToken: accessToken.token,
+    clientId: process.env.GOOGLE_API_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_API_CLIENT_SECRET,
+    refreshToken: process.env.GOOGLE_API_REFRESH_TOKEN,
+    accessToken: accessToken?.token,
   };
 
   const transport = buildTransporter("gmail", transporterAuth);
