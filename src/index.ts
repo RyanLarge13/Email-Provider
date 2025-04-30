@@ -7,11 +7,12 @@ import EmailRouter from "./routes/emailRoutes";
 dotenv.config();
 
 const app = express();
+const PORT = Number(process.env.PORT) || 8080;
 
 app.use(cors());
 
 app.use("send-email", EmailRouter);
 
-app.listen("8080", () => {
-  console.log("App listening on port 8080");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`App listening on port ${PORT}`);
 });
