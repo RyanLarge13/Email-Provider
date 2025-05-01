@@ -1,6 +1,9 @@
 import nodemailer from "nodemailer";
 import { MailOptions } from "nodemailer/lib/sendmail-transport";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 //import GoogleOAuth2Client from "./googleAuth";
 
@@ -54,9 +57,10 @@ export const NodeMailer_SendEmail = async (
   */
 
   const transporterAuth = {
-    service: "gmail",
-    auth: process.env.GOOGLE_AUTH_PASSKEY
-  };
+      user: process.env.EMAIL,
+      pass: process.env.GOOGLE_APP_PASSKEY
+    }
+  
 
   const transport = buildTransporter("gmail", transporterAuth);
 

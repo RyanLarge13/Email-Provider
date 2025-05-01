@@ -102,7 +102,7 @@ const M_GetDefaultTemplate = (requestBody: Body): string => {
                         color: #aaa;
                         "
                     >
-                        &copy; 2025 Company Name. All rights reserved.
+                        &copy; 2025 Dev Commerce Services. All rights reserved.
                     </td>
                     </tr>
                 </table>
