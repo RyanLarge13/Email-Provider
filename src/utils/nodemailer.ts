@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { MailOptions } from "nodemailer/lib/sendmail-transport";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 
-import GoogleOAuth2Client from "./googleAuth";
+//import GoogleOAuth2Client from "./googleAuth";
 
 const buildTransporter = (
   service: string,
@@ -13,7 +13,7 @@ const buildTransporter = (
 > => {
   const transport = nodemailer.createTransport({
     service: service,
-    auth: auth,
+    auth: auth
   });
 
   return transport;
@@ -22,7 +22,12 @@ const buildTransporter = (
 export const NodeMailer_SendEmail = async (
   mailOptions: MailOptions
 ): Promise<void> => {
-  let accessToken = null;
+  /*
+    TODO:
+      CONSIDER:
+        1. Not sure what the heck I am doing yet here. Using app passkey for now instead of commented out code below using OAuth2
+  */
+  /* let accessToken = null;
 
   try {
     accessToken = await GoogleOAuth2Client?.getAccessToken();
@@ -45,6 +50,12 @@ export const NodeMailer_SendEmail = async (
     clientSecret: process.env.GOOGLE_API_CLIENT_SECRET,
     refreshToken: process.env.GOOGLE_API_REFRESH_TOKEN,
     accessToken: accessToken?.token,
+  };
+  */
+
+  const transporterAuth = {
+    service: "gmail",
+    auth: process.env.GOOGLE_AUTH_PASSKEY
   };
 
   const transport = buildTransporter("gmail", transporterAuth);

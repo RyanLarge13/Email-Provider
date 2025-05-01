@@ -11,7 +11,7 @@ const app = express();
 const staticAssetsPath = path.join(__dirname, "static");
 const PORT = Number(process.env.PORT) || 8080;
 
-const corsAcceptList = [process.env.DEV_CORS_ORIGIN || ""];
+const corsAcceptList = [process.env.DEV_CORS_ORIGIN || "https://shellys-pets.vercel.app"];
 
 app.use(
   cors({

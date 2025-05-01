@@ -120,17 +120,17 @@ export const sendEmail = async (req: Request, res: Response): Promise<void> => {
         IMPLEMENT:
           1. Validate all request body data before continuing
   */
-  const { from, to }: Body = req.body;
+  const { from, to, businessName }: Body = req.body;
 
   const customTemplate = M_GetDefaultTemplate(req.body);
 
   try {
     const mailOptions: MailOptions = {
-      from: `"Website Contact Form" <${process.env.EMAIL}>`,
+      from: `"Website Contact Form For ${businessName}" <${process.env.EMAIL}>`,
       replyTo: from, // This makes replies go directly to the user
       to: to,
       subject: "New Client Message",
-      html: customTemplate,
+      html: customTemplate
     };
 
     try {
@@ -138,13 +138,13 @@ export const sendEmail = async (req: Request, res: Response): Promise<void> => {
 
       res.status(200).json({
         message:
-          "Your email was successfully sent and we will reply to you as soon as possible",
+          "Your email was successfully sent and we will reply to you as soon as possible"
       });
     } catch (err) {
       console.log(`Error sending email. Top level error. Error: ${err}`);
       res.status(500).json({
         message:
-          "We could not send your email at this time. Please use another contact method and get ahold of the website manager. Forgive us for the inconvenience.",
+          "We could not send your email at this time. Please use another contact method and get ahold of the website manager. Forgive us for the inconvenience."
       });
     }
   } catch (err) {
